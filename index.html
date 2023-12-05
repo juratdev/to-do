@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do App</title>
+  <link rel="stylesheet" href="./dist/output.css">
+  <script src="./js/main.js" defer></script>
+</head>
+
+<body>
+  <header class="bg-primary py-5">
+    <div class="container px-4 mx-auto">
+      <div class="text-center mx-auto w-56">
+        <img src="./images/logo.svg" alt="logo" class="w-full">
+      </div>
+    </div>
+  </header>
+  <div class="flex justify-center items-center mb-3 container px-4 mx-auto max-w-[1000px] mt-11">
+    <input id="input" type="text" class="outline-none w-full px-5 py-3 text-3xl font-semibold rounded-s-full transition-all
+      duration-300 text-secondary placeholder:text-[#969696] placeholder:text-xl bg-primary"
+      placeholder="What do you need to do?" />
+    <button type="submit"
+      class="bg-[#76B7CD] px-5 py-3 text-[#F3F3F3] text-3xl rounded-e-full font-semibold duration-300" onclick="add()">
+      Add
+    </button>
+  </div>
+  <main class="container px-4 mx-auto max-w-[1000px]">
+    <div class=" bg-primary px-10">
+      <ol id="playground" class="list-disc todo-list rounded-full px-5"></ol>
+    </div>
+    <button id="clearButton" class="px-5 py-3 font-semibold flex items-center gap-2 hover:bg-red-700 duration-300 mt-3"
+      onclick="clearList()"><img class="w-7" src="./images/clear.svg" alt="clear"> <span>Clear
+        Completed</span></button>
+  </main>
+</body>
+
+</html>

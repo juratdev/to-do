@@ -1,0 +1,6 @@
+.idea
+.vscode
+.vscode/*
+.vsix
+.history
+/node_modules
