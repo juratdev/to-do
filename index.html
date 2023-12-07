@@ -2,38 +2,129 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To Do App</title>
-  <link rel="stylesheet" href="./dist/output.css">
-  <script src="./js/main.js" defer></script>
+  <meta charset="UTF-8" />
+  <title>To-do</title>
+  <link rel="stylesheet" href="./assets/icomoon/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins';
+    }
+  </style>
 </head>
 
-<body>
-  <header class="bg-primary py-5">
-    <div class="container px-4 mx-auto">
-      <div class="text-center mx-auto w-56">
-        <img src="./images/logo.svg" alt="logo" class="w-full">
+<body class="bg-white">
+  <div>
+    <header class="py-5 bg-orange-light">
+      <img src="./assets/logo.svg" alt="" class="mx-auto">
+    </header>
+    <main class="container pt-[60px] pb-[158px] h-[calc(100vh-100px)]">
+      <div class="mb-8 text-center select-none">
+        <h4 id="full-day" class="text-2xl text-dark">Day Month, Year</h4>
+        <div class=" time-container">
+          <span id="hour" class="text-2xl text-dark">Hh</span>
+          :
+          <span id="minute" class="text-2xl text-dark">Mm</span>
+          :
+          <span id="second" class="text-2xl text-dark">Ss</span>
+        </div>
       </div>
-    </div>
-  </header>
-  <div class="flex justify-center items-center mb-3 container px-4 mx-auto max-w-[1000px] mt-11">
-    <input id="input" type="text" class="outline-none w-full px-5 py-3 text-3xl font-semibold rounded-s-full transition-all
-      duration-300 text-secondary placeholder:text-[#969696] placeholder:text-xl bg-primary"
-      placeholder="What do you need to do?" />
-    <button type="submit"
-      class="bg-[#76B7CD] px-5 py-3 text-[#F3F3F3] text-3xl rounded-e-full font-semibold duration-300" onclick="add()">
-      Add
-    </button>
+      <form id="form" class="flex" onsubmit="add(event)">
+        <input id="input"
+          class="pl-9 py-4 rounded-l-full w-full outline-none bg-orange-light text-dark placeholder:text-gray-300 text-3.5xl font-normal leading-normal"
+          type="text" placeholder="What do you need to do?">
+        <button
+          class="rounded-r-full px-6 text-gray-400 bg-blue font-semibold tracking-[1.9px] uppercase text-[38px] hover:bg-orange duration-300">Add</button>
+      </form>
+      <div class="transition-all duration-300 ml-4">
+        <p id="message-create" class="mt-1 text-red-600"></p>
+      </div>
+
+      <div class="px-[50px] mt-10 bg-orange-light rounded-[50px] flex items-end flex-col gap-6">
+        <div class="tab_section w-full">
+          <div class="plan_type_cont w-full flex justify-center gap-10 bg-orange-light">
+            <button
+              class="plan__case__btn py-2 text-2xl px-6 mx-0 hover:bg-orange transition-all delay-100 hover:text-white"
+              onclick="controlBtns('all')">All</button>
+            <button
+              class="plan__case__btn py-2 text-2xl px-6 mx-0 hover:bg-orange transition-all delay-100 hover:text-white"
+              onclick="controlBtns('new')">New</button>
+            <button
+              class="plan__case__btn py-2 text-2xl px-6 mx-0 hover:bg-orange transition-all delay-100 hover:text-white"
+              onclick="controlBtns('removed')">Removed</button>
+            <button
+              class="plan__case__btn text-2xl py-2 px-6 mx-0 hover:bg-orange hover:text-white transition-all delay-100"
+              onclick="controlBtns('done')">Done</button>
+          </div>
+
+          <div id="all" class="plan" style="display:none">
+            <div id="list-group-todo" class="w-full">
+
+            </div>
+          </div>
+
+          <div id="new" class="plan" style="display:none">
+
+
+          </div>
+          <div id="removed" class="plan" style="display:none">
+
+          </div>
+
+          <div id="done" class="plan" style="display:none">
+
+          </div>
+
+        </div>
+
+        <button onclick="clearTasks()"
+          class="px-2.5 py-5 flex items-center gap-2.5 text-2xl font-normal leading-normal text-orange">
+          <span class="icon-clear"></span>
+          Clear Completed
+        </button>
+      </div>
+    </main>
   </div>
-  <main class="container px-4 mx-auto max-w-[1000px]">
-    <div class=" bg-primary px-10">
-      <ol id="playground" class="list-disc todo-list rounded-full px-5"></ol>
-    </div>
-    <button id="clearButton" class="px-5 py-3 font-semibold flex items-center gap-2 hover:bg-red-700 duration-300 mt-3"
-      onclick="clearList()"><img class="w-7" src="./images/clear.svg" alt="clear"> <span>Clear
-        Completed</span></button>
-  </main>
+  <script src="main.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: {
+          center: true,
+          padding: "16px",
+          screens: {
+            sm: '640px',
+            md: '768px',
+            lg: '1024px',
+            xl: '1072px',
+          },
+        },
+        extend: {
+          colors: {
+            orange: {
+              DEFAULT: "#D98326",
+              light: "#F1ECE6",
+            },
+            blue: "#76B7CD",
+            red: "#B30B04",
+            dark: "#323232",
+            gray: {
+              100: "#737373",
+              200: "#C2C2C2",
+              300: "#969696",
+              400: "#F3F3F3"
+            }
+          },
+          fontSize: {
+            "3.5xl": "32px"
+          }
+        }
+      },
+    };
+  </script>
 </body>
 
 </html>
